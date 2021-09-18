@@ -283,7 +283,7 @@ export default {
   }),
 
   computed: {
-     ...mapState(["isLogin"]),
+    ...mapState(["isLogin"]),
     emailHint() {
       return `กรอกรหัสที่ได้รับจากอีเมลชื่อ '${this.email}' และคลิก 'Login'`
     }

@@ -1,7 +1,7 @@
 <template>
   <div id="app" data-app>
     <v-container style="height:50vh; width:100%; overflow-y:scroll; margin-top:30px; margin-bottom-10px">
-      <v-layout row wrap justify-center align-center>
+      <v-layout v-if="selectedTemplate==null" row wrap justify-center align-center>
         <div v-for="book in books" :key="book.title">
           <v-card
             flat
@@ -13,6 +13,7 @@
                 :aspect-ratio="1 / 1"
                 class="media"
                 src="http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg"
+                @click="selectTemplate(book.title)"
               >
               </v-img>
             </div>
@@ -37,15 +38,44 @@
           </v-card>
         </div>
       </v-layout>
+      <Template1 v-else />
     </v-container>
+    <v-snackbar
+      :timeout="timeout"
+      v-model="snackbar"
+      top
+      right 
+      :color="snackbarColor"
+    >
+      {{ snackbarText }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="#fff"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
+import Template1 from './Template1.vue'
+import { mapState, mapActions } from "vuex";
 export default {
   name: "Banner",
-
+  components: {
+    Template1,
+  },
   data: () => ({
+      snackbar: false,
+      snackbarColor: '#41A746',
+      snackbarText: 'test',
+      timeout: 5000,
       books: [
         { title: 'template1', rating: 3, year: '2016' },
         { title: 'template2 with very very long text', rating: 5, year: '2016' },
@@ -58,6 +88,7 @@ export default {
       ]
   }),
   computed: {
+    ...mapState(["isLogin", "selectedTemplate"]),
     width () {
         console.log(this.$vuetify.breakpoint.name)
         let w = '300px';
@@ -70,6 +101,19 @@ export default {
         }
         return w;
       },
+  },
+  methods: {
+    ...mapActions(["setSelectedTemplate"]),
+    selectTemplate(key) {
+      // if (!this.isLogin) {
+      //   this.snackbarColor = "#DC3A45"
+      //   this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
+      //   this.snackbar = true
+      // } else { 
+      //   this.setSelectedTemplate(key)
+      // }
+      this.setSelectedTemplate(key)
+    }
   }
 };
 </script>
