@@ -1,45 +1,67 @@
 <template>
     <v-container fill-height fluid>
         <v-row no-gutters justify="space-around">
-            <v-col md="12" lg="6" class="d-flex justify-center" >
+            <v-col cols="12" md="6" lg="6" xl="6" class="d-flex justify-center" >
                 <div ref="imageDom" class="box-custom-image2">
-                    <img ref="imgFood" src="../assets/banner.jpg" height="500" width="500" class="preview">
+                    <img ref="imgFood" src="../assets/banner.jpg" height="600" width="600" class="image-food">
+                    <div class="content-top">
+                        <img ref="imgGradient" src="../assets/blackGradient.png"  class="gradient" />
+                    </div>
                 </div>
             </v-col>
-            <v-col md="12" lg="6" class="d-flex justify-center">
-                <v-layout row>
-                    <v-btn class="white--text" color="#d70f64" style="width:80%;" @click="uploadClick()">{{ uploadText }}</v-btn>
-                    <input
-                        ref="uploader"
-                        class="d-none"
-                        type="file"
-                        accept="image/*"
-                        @change="onFileChanged"
-                    >
-                </v-layout>
-                <v-layout row>
-                    <v-btn class="white--text" color="#d70f64" style="width:40%;" @click="back()">ย้อนกลับ</v-btn>
-                    <v-btn ref="save_pic" class="white--text" color="#d70f64" style="width:40%;" @click="toImage()">บันทึกรูปภาพ</v-btn>
-                </v-layout>
+            <v-col cols="12" md="6" lg="6" xl="6"  class="d-flex justify-center">
+                <div class="parent">
+                    <div class="div1">
+                        <v-btn class="white--text" width="100%" color="#d70f64" @click="uploadClick()">{{ uploadText }}</v-btn>
+                        <input
+                            ref="uploader"
+                            class="d-none"
+                            type="file"
+                            accept="image/*"
+                            @change="onFileChanged"
+                        >
+                    </div>
+                    <div class="div2">
+                        <v-text-field ma-2 v-model="restaurantName" label="ชื่อร้าน" ></v-text-field>
+                    </div>
+                    <div class="div3">
+                        <v-text-field ma-2 v-model="restaurantName" label="สาขา" ></v-text-field>
+                    </div>
+                    <div class="div4">
+                        <v-text-field ma-2 v-model="restaurantName" label="เปอร์เซ็นต์ส่วนลด" ></v-text-field>
+                    </div>
+                    <div class="div5">
+                        <v-text-field ma-2 v-model="restaurantName" label="Vendor Code" ></v-text-field>
+                    </div>
+                    <div class="div6">
+                        <v-btn class="white--text" color="#d70f64" style="width:100%;" @click="back()">ย้อนกลับ</v-btn>
+                    </div>
+                    <div class="div7">
+                        <v-btn v-if="isSaving" loading ref="save_pic" class="white--text" style="width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
+                        <v-btn v-else ref="save_pic" class="white--text" style="width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
+                    </div>
+                </div>
             </v-col>
         </v-row>
     </v-container>
 </template>
 <script>
 import { mapActions } from "vuex";
-import { toJpeg } from 'html-to-image';
-import { saveAs } from 'file-saver';
+import { toBlob } from 'html-to-image';
+import { saveAs } from 'file-saver'
 export default {
     name: "Template1",
     data: () => ({
-        uploadText: 'อัพโหลดรูปภาพ'
+        uploadText: 'อัพโหลดรูปภาพ',
+        isSaving: false,
+        restaurantName: '',
     }),
     methods: {
         ...mapActions(["setSelectedTemplate"]),
         uploadClick() {
             window.addEventListener('focus', () => {
                 this.isSelecting = false
-            }, { once: true })
+            }, { once: '300px' })
             this.$refs.uploader.click();
         },
         onFileChanged(e) {
@@ -70,91 +92,98 @@ export default {
         back() {
             this.setSelectedTemplate(null)
         },
-        toImage() {
-            var isIphone = navigator.userAgent.indexOf("iPhone") != -1;
-            var isIpod = navigator.userAgent.indexOf("iPod") != -1;
-            var isIpad = navigator.userAgent.indexOf("iPad") != -1;
-            console.log(isIphone)
-            console.log(isIpod)
-            console.log(isIpad)
-            if (isIphone || isIpod || isIpad) {
-                this.$refs.save_pic.click();
-            }
-            this.$refs.imageDom.style = "border-radius: 0% !important";
-            this.$refs.imgFood.style = "border-radius: 0% !important";   
-            let img_sizes = this.$refs.imageDom;
-            toJpeg(img_sizes, {
-                quality: 0.5,
-                canvasWidth: 600,
-                canvasHeight: 600
-            }).then(function (dataURI) {
-                var byteString = atob(dataURI.split(',')[1]);
-                var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-                var ab = new ArrayBuffer(byteString.length);
-                var ia = new Uint8Array(ab);
-                for (var i = 0; i < byteString.length; i++) {
-                    ia[i] = byteString.charCodeAt(i);
-                }
-                var blob = new Blob([ab], {type: mimeString});
-                saveAs(blob, "test.jpg");
-            }).catch(function (error) {
-                console.log('oops, something went wrong!', error);
-            });
+        generateImage() {
+            return new Promise(resolve => {
+                const node = this.$refs.imageDom;
+                toBlob(node)
+                    .then((page) => {
+                        return resolve(page);
+                    })
+            })
         },
-        dataURItoBlob(dataURI) {
-            // convert base64 to raw binary data held in a string
-            // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-            var byteString = atob(dataURI.split(',')[1]);
-
-            // separate out the mime component
-            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-
-            // write the bytes of the string to an ArrayBuffer
-            var ab = new ArrayBuffer(byteString.length);
-
-            // create a view into the buffer
-            var ia = new Uint8Array(ab);
-
-            // set the bytes of the buffer to the correct values
-            for (var i = 0; i < byteString.length; i++) {
-                ia[i] = byteString.charCodeAt(i);
-            }
-
-            // write the ArrayBuffer to a blob, and you're done
-            var blob = new Blob([ab], {type: mimeString});
-            return blob;
-
+        toImage() {
+            // var isIphone = navigator.userAgent.indexOf("iPhone") != -1;
+            // var isIpod = navigator.userAgent.indexOf("iPod") != -1;
+            // var isIpad = navigator.userAgent.indexOf("iPad") != -1;
+            this.$refs.imageDom.style = "border-radius: 0% !important";
+            this.$refs.imgFood.style = "border-radius: 0% !important";
+            this.$refs.imgGradient.style = "border-radius: 0% !important";
+            this.isSaving = true;
+            this.generateImage().then(() => {
+                this.generateImage().then(() => {
+                    this.generateImage().then((blob) => {
+                        saveAs(blob, 'template1.png');
+                        this.isSaving = false;
+                    })
+                })
+            })
         }
-    }
+    },
 }
 </script>
 <style scoped>
-.preview {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 9;
-    border-radius: 3%;
-    -o-object-fit: cover;
-        object-fit: cover;
-    opacity: 0.7;
-}
+@import url(https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&display=swap);
+
 .v-btn {
     width: 80%;
 }
 .box-custom-image2 {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 370px;
+  height: 370px;
   background-color: blanchedalmond;
   overflow: hidden;
   perspective: 1px;
   border-radius:3%;
   margin: 0px;
+  margin-bottom: 20px;
   padding: 0px;
+}
+
+.box-custom-image2 .image-food  {
+  position: absolute;
+    left: -1000%;
+    right: -1000%;
+    top: -1000%;
+    bottom: -1000%;
+    margin: auto;
+    min-height: 100%;
+    min-width: 100%;
+  z-index: 9;
+  border-radius: 3%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.box-custom-image2  .content-top {
+    position: relative;
+    top: 0px;
+    z-index: 999;
+}
+
+.box-custom-image2  .content-top .gradient {
+    width: 600px;
+    margin: 0px;
+    border-top-left-radius: 3%;
+}
+
+.parent {
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+grid-template-rows: repeat(6, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+width:100%
+}
+
+.div1 { grid-area: 1 / 2 / 2 / 5; }
+.div2 { grid-area: 2 / 1 / 3 / 6; }
+.div3 { grid-area: 3 / 1 / 4 / 6; }
+.div4 { grid-area: 4 / 1 / 5 / 6; }
+.div5 { grid-area: 5 / 1 / 6 / 6; }
+.div6 { grid-area: 6 / 1 / 7 / 3; }
+.div7 { grid-area: 6 / 4 / 7 / 6; }
+
+.v-label {
+    font-size: 14px;
 }
 </style>

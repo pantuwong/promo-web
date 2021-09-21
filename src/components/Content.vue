@@ -12,7 +12,7 @@
               <v-img
                 :aspect-ratio="1 / 1"
                 class="media"
-                src="http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg"
+                :src="book.image"
                 @click="selectTemplate(book.title)"
               >
               </v-img>
@@ -22,7 +22,7 @@
                 <template v-slot:activator="{ on, attrs }">
                   <div
                     style="cursor:default;"
-                    class="text"
+                    class="content-text text-center"
                     v-bind="attrs"
                     v-on="on"
                   >
@@ -32,13 +32,10 @@
                 <span>{{ book.title }}</span>
               </v-tooltip>
             </div>
-            <div class="text-no-wrap" style="cursor:default;">
-              {{ book.year }}
-            </div>
           </v-card>
         </div>
       </v-layout>
-      <Template1 v-else />
+      <Template1 v-else-if="selectedTemplate=='เมนูนี้มีส่วนลด'" />
     </v-container>
     <v-snackbar
       :timeout="timeout"
@@ -47,7 +44,7 @@
       right 
       :color="snackbarColor"
     >
-      {{ snackbarText }}
+      {{ sstyle="content-text"}}
 
       <template v-slot:action="{ attrs }">
         <v-btn
@@ -77,14 +74,14 @@ export default {
       snackbarText: 'test',
       timeout: 5000,
       books: [
-        { title: 'template1', rating: 3, year: '2016' },
-        { title: 'template2 with very very long text', rating: 5, year: '2016' },
-        { title: 'template3', rating: 2.5, year: '2016' },
-        { title: 'template4', rating: 1.8, year: '2016' },
-        { title: 'template5', rating: 4, year: '2016' },
-        { title: 'template6', rating: 4, year: '2016' },
-        { title: 'template7', rating: 4, year: '2016' },
-        { title: 'template8', rating: 4, year: '2016' },
+        { title: 'เมนูนี้มีส่วนลด', image: require('../assets/template1.png')},
+        { title: 'template2',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
+        { title: 'template3',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
+        { title: 'template4',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
+        { title: 'template5',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
+        { title: 'template6',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
+        { title: 'template7',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
+        { title: 'template8',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
       ]
   }),
   computed: {
@@ -105,14 +102,13 @@ export default {
   methods: {
     ...mapActions(["setSelectedTemplate"]),
     selectTemplate(key) {
-      // if (!this.isLogin) {
-      //   this.snackbarColor = "#DC3A45"
-      //   this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
-      //   this.snackbar = true
-      // } else { 
-      //   this.setSelectedTemplate(key)
-      // }
-      this.setSelectedTemplate(key)
+      if (!this.isLogin) {
+        this.snackbarColor = "#DC3A45"
+        this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
+        this.snackbar = true
+      } else { 
+        this.setSelectedTemplate(key)
+      }
     }
   }
 };
@@ -138,6 +134,10 @@ export default {
    display: block !important;
    height: 24px;
 }
-
+.content-text {
+  margin-top: 20px;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-weight: 900;
+}
 
 </style>
