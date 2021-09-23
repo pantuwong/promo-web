@@ -73,6 +73,7 @@ export default {
         } else {
             url = `https://www.foodpanda.co.th/restaurant/${this.vendorCode}`
         }
+        console.log(url)
         qr.toDataURL(url, (err, src) => {
             if (err) {
                 console.log(err)

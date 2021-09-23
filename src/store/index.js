@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     isLogin: false,
     selectedTemplate: null,
-    vendorcode: null,
+    vendorCode: null,
   },
   mutations: {
     setIsLogin(state, isLogin) {
@@ -17,7 +17,7 @@ export default new Vuex.Store({
       state.selectedTemplate = template
     },
     setVendorCode(state, code) {
-      state.vendorcode = code;
+      state.vendorCode = code;
     }
   },
   actions: {
