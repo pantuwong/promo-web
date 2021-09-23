@@ -3,9 +3,18 @@
         <v-row no-gutters justify="space-around">
             <v-col cols="12" md="6" lg="6" xl="6" class="d-flex justify-center" >
                 <div ref="imageDom" class="box-custom-image2">
-                    <img ref="imgFood" src="../assets/banner.jpg" height="600" width="600" class="image-food">
+                    <img ref="imgFood" src="../assets/images.jpeg" height="600" width="600" class="image-food">
                     <div class="content-top">
                         <img ref="imgGradient" src="../assets/blackGradient.png"  class="gradient" />
+                        <img ref="imgTopLeft" src="../assets/template1-top-left.png"  class="top-left" />
+                        <img ref="qr" :src="qr" class="qr">
+                        <div class="name">{{restaurantName}}</div>
+                        <div class="branch">{{restaurantBranch}}</div>
+                        <img ref="imgTopRight" src="../assets/pin.png"  class="top-right" />
+                    </div>
+                    <div class="content-bottom">
+                        <img ref="imgBottomRight" src="../assets/template1-bottom-right.png"  class="bottom-right" />
+                        <div class="percent">{{percent}}</div>
                     </div>
                 </div>
             </v-col>
@@ -25,13 +34,10 @@
                         <v-text-field ma-2 v-model="restaurantName" label="ชื่อร้าน" ></v-text-field>
                     </div>
                     <div class="div3">
-                        <v-text-field ma-2 v-model="restaurantName" label="สาขา" ></v-text-field>
+                        <v-text-field ma-2 v-model="restaurantBranch" label="สาขา" ></v-text-field>
                     </div>
                     <div class="div4">
-                        <v-text-field ma-2 v-model="restaurantName" label="เปอร์เซ็นต์ส่วนลด" ></v-text-field>
-                    </div>
-                    <div class="div5">
-                        <v-text-field ma-2 v-model="restaurantName" label="Vendor Code" ></v-text-field>
+                        <v-text-field ma-2 v-model="percent" label="เปอร์เซ็นต์ส่วนลด" ></v-text-field>
                     </div>
                     <div class="div6">
                         <v-btn class="white--text" color="#d70f64" style="width:100%;" @click="back()">ย้อนกลับ</v-btn>
@@ -46,16 +52,38 @@
     </v-container>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState} from "vuex";
 import { toBlob } from 'html-to-image';
-import { saveAs } from 'file-saver'
+import { saveAs } from 'file-saver';
+const qr = require("qrcode");
 export default {
     name: "Template1",
     data: () => ({
         uploadText: 'อัพโหลดรูปภาพ',
         isSaving: false,
-        restaurantName: '',
+        restaurantName: 'ชื่อร้าน',
+        restaurantBranch: 'สาขา',
+        percent: '10',
+        qr: null,
     }),
+    mounted() {
+        let url = '';
+        if (this.vendorCode === undefined) {
+            url = 'https://www.foodpanda.co.th/';
+        } else {
+            url = `https://www.foodpanda.co.th/restaurant/${this.vendorCode}`
+        }
+        qr.toDataURL(url, (err, src) => {
+            if (err) {
+                console.log(err)
+            } else {
+                this.qr = src
+            }
+        });
+    },  
+    computed: {
+        ...mapState(["vendorCode"]),
+    },
     methods: {
         ...mapActions(["setSelectedTemplate"]),
         uploadClick() {
@@ -73,7 +101,7 @@ export default {
             this.$refs.imgFood.style = "border-radius: 3% !important";   
         },
         createImage(file) {
-
+            console.log(qr)
             var reader = new FileReader();
             var vm = this;
             const preview = document.querySelector('img');
@@ -160,10 +188,81 @@ export default {
     z-index: 999;
 }
 
+.box-custom-image2  .content-bottom {
+    position: relative;
+    bottom: 0px;
+    z-index: 9999;
+}
+
 .box-custom-image2  .content-top .gradient {
+    position: absolute;
     width: 600px;
     margin: 0px;
     border-top-left-radius: 3%;
+}
+
+.box-custom-image2  .content-top .top-left {
+    position: absolute;
+    width: 90px;
+    top: 8px;
+    left: 8px;
+}
+
+.box-custom-image2  .content-top .qr {
+    position: absolute;
+    left: 62px;
+    width: 34px;
+    top: 10px;
+}
+
+.box-custom-image2  .content-top .top-right {
+    position: absolute;
+    width: 40px;
+    top: 5px;
+    right: 8px;
+}
+
+.box-custom-image2  .content-top .name {
+    position: absolute;
+    width: 250px;
+    top: 3px;
+    right: 50px;
+    color: white;
+    text-align: right;
+    font-family: 'Kanit';
+    text-shadow: 1px 2px 3px;
+    font-size: 25px;
+}
+.box-custom-image2  .content-top .branch {
+    position: absolute;
+    width: 250px;
+    top: 30px;
+    right: 50px;
+    color: white;
+    text-align: right;
+    font-family: 'Kanit';
+    text-shadow: 1px 2px 3px;
+    font-size: 14px;
+}
+
+.box-custom-image2  .content-bottom .bottom-right {
+    position: absolute;
+    width: 370px;
+    bottom: -370px;
+    right: 0px;
+    border-bottom-right-radius: 3%;
+}
+
+.box-custom-image2  .content-bottom .percent {
+    position: absolute;
+    width: 100px;
+    right: 65px;
+    bottom: -335px;
+    color: #FFD272;
+    text-align: center;
+    font-family: 'Kanit';
+    font-weight: bold;
+    font-size: 50px;
 }
 
 .parent {
@@ -184,6 +283,6 @@ width:100%
 .div7 { grid-area: 6 / 4 / 7 / 6; }
 
 .v-label {
-    font-size: 14px;
+    font-size: 12px !important;
 }
 </style>

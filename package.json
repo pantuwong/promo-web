@@ -16,8 +16,13 @@
     "filesaver": "^0.0.13",
     "html-to-image": "^1.8.5",
     "html2canvas": "^1.3.2",
+    "qrcode": "^1.4.4",
+    "qrcode.vue": "^3.3.2",
     "vue": "^2.6.11",
     "vue-html2canvas": "^0.0.4",
+    "vue-qrcode": "^1.0.0",
+    "vue-qriously": "^1.1.1",
+    "vue-translator": "^0.10.0",
     "vuetify": "^2.4.0",
     "vuex": "^3.6.2"
   },

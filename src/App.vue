@@ -290,7 +290,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["setIsLogin"]),
+    ...mapActions(["setIsLogin","setVendorCode"]),
     openLoginLogoutDialog() {
       if (this.isLogin) {
         this.login_dialog = false
@@ -381,6 +381,7 @@ export default {
           this.snackbar = true
           this.login_dialog = false
           this.setIsLogin(true)
+          this.setVendorCode(this.vendorCode)
         } else {
           this.snackbarColor = "#DC3A45"
           if (loginResult.message === 'NO_EMAIL_OR_OTP') {

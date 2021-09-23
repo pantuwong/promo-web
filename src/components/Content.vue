@@ -44,7 +44,7 @@
       right 
       :color="snackbarColor"
     >
-      {{ sstyle="content-text"}}
+      {{ snackbarText }}
 
       <template v-slot:action="{ attrs }">
         <v-btn
