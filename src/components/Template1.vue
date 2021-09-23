@@ -99,7 +99,9 @@ export default {
             if (!files.length) return;
             this.createImage(files[0]);
             this.$refs.imageDom.style = "border-radius: 3% !important";
-            this.$refs.imgFood.style = "border-radius: 3% !important";   
+            this.$refs.imgFood.style = "border-radius: 3% !important";
+            this.$refs.imgGradient.style = "border-radius: 3% !important";
+            this.$refs.imgBottomRight.style = "border-radius: 3% !important"; 
         },
         createImage(file) {
             console.log(qr)
@@ -137,6 +139,7 @@ export default {
             this.$refs.imageDom.style = "border-radius: 0% !important";
             this.$refs.imgFood.style = "border-radius: 0% !important";
             this.$refs.imgGradient.style = "border-radius: 0% !important";
+            this.$refs.imgBottomRight.style = "border-radius: 0% !important";
             this.isSaving = true;
             this.generateImage().then(() => {
                 this.generateImage().then(() => {
