@@ -36,6 +36,7 @@
         </div>
       </v-layout>
       <Template1 v-else-if="selectedTemplate=='เมนูนี้มีส่วนลด'" />
+      <Template2 v-else-if="selectedTemplate=='แนะนำเมนูเด็ด!'" />
     </v-container>
     <v-snackbar
       :timeout="timeout"
@@ -62,11 +63,13 @@
 
 <script>
 import Template1 from './Template1.vue'
+import Template2 from './Template2.vue'
 import { mapState, mapActions } from "vuex";
 export default {
   name: "Banner",
   components: {
     Template1,
+    Template2,
   },
   data: () => ({
       snackbar: false,
@@ -74,8 +77,8 @@ export default {
       snackbarText: 'test',
       timeout: 5000,
       books: [
-        { title: 'เมนูนี้มีส่วนลด', image: require('../assets/template1.png')},
-        { title: 'template2',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
+        { title: 'เมนูนี้มีส่วนลด', image: require('../assets/template1.jpeg')},
+        { title: 'แนะนำเมนูเด็ด!', image: require('../assets/template2.png')},
         { title: 'template3',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
         { title: 'template4',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
         { title: 'template5',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
