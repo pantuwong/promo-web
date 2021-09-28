@@ -3,17 +3,17 @@
         <v-row no-gutters justify="space-around">
             <v-col cols="12" md="6" lg="6" xl="6" class="d-flex justify-center" >
                 <div ref="imageDom" class="box-custom-image2">
-                    <img ref="imgFood" src="../assets/template1-back.png" height="600" width="600" class="image-food">
+                    <img ref="imgFood" src="../assets/template6-back.png" height="600" width="600" class="image-food">
                     <div class="content-top">
                         <img ref="imgGradient" src="../assets/blackGradient.png"  class="gradient" />
                         <img ref="imgTopLeft" src="../assets/template1-top-left.png"  class="top-left" />
                         <img ref="qr" :src="qr" class="qr">
-                        <div class="name">{{restaurantName}}</div>
-                        <div class="branch">{{restaurantBranch}}</div>
+                        <img ref="imgTopLeft" src="../assets/template6-top-right.png"  class="top-right" />
                     </div>
                     <div class="content-bottom">
-                        <img ref="imgBottomRight" src="../assets/template1-bottom-right.png"  class="bottom-right" />
-                        <div class="percent">{{percent}}</div>
+                        <img ref="imgBottomRight" src="../assets/template4-bottom-right.png"  class="bottom-right" />
+                        <div class="restaurantName">{{restaurantName}}</div>
+                        <div class="caption-menu">{{caption}}</div>
                     </div>
                 </div>
             </v-col>
@@ -33,15 +33,12 @@
                         <v-text-field ma-2 v-model="restaurantName" label="ชื่อร้าน" ></v-text-field>
                     </div>
                     <div class="div3">
-                        <v-text-field ma-2 v-model="restaurantBranch" label="สาขา" ></v-text-field>
+                        <v-text-field ma-2 v-model="caption" label="ข้อความ caption" ></v-text-field>
                     </div>
                     <div class="div4">
-                        <v-text-field ma-2 v-model="percent" label="เปอร์เซ็นต์ส่วนลด" ></v-text-field>
-                    </div>
-                    <div class="div6">
                         <v-btn class="white--text" color="#d70f64" style="width:100%;" @click="back()">ย้อนกลับ</v-btn>
                     </div>
-                    <div class="div7">
+                    <div class="div5">
                         <v-btn v-if="isSaving" loading ref="save_pic" class="white--text" style="width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
                         <v-btn v-else ref="save_pic" class="white--text" style="width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
                     </div>
@@ -56,13 +53,12 @@ import { toBlob } from 'html-to-image';
 import { saveAs } from 'file-saver';
 const qr = require("qrcode");
 export default {
-    name: "Template1",
+    name: "Template6",
     data: () => ({
         uploadText: 'อัพโหลดรูปภาพ',
         isSaving: false,
-        restaurantName: 'ร้านแฮมบี',
-        restaurantBranch: 'สาขาทองหล่อ',
-        percent: '20',
+        restaurantName: 'ร้านไก่ว้าว',
+        caption: 'ที่ไม่ได้ว้าวแค่ไก่ ...',
         qr: null,
     }),
     mounted() {
@@ -143,7 +139,7 @@ export default {
             this.generateImage().then(() => {
                 this.generateImage().then(() => {
                     this.generateImage().then((blob) => {
-                        saveAs(blob, 'template1.png');
+                        saveAs(blob, 'template6.png');
                         this.isSaving = false;
                     })
                 })
@@ -184,7 +180,6 @@ export default {
   border-radius: 3%;
   -o-object-fit: cover;
      object-fit: cover;
-    object-position: 100% 0;
 }
 .box-custom-image2  .content-top {
     position: relative;
@@ -221,9 +216,9 @@ export default {
 
 .box-custom-image2  .content-top .top-right {
     position: absolute;
-    width: 40px;
-    top: 5px;
-    right: 8px;
+    width: 150px;
+    top: 10px;
+    right: 10px;
 }
 
 .box-custom-image2  .content-top .name {
@@ -249,40 +244,51 @@ export default {
 
 .box-custom-image2  .content-bottom .bottom-right {
     position: absolute;
-    width: 370px;
+    width: 400px;
     bottom: -370px;
     right: 0px;
     border-bottom-right-radius: 3%;
 }
 
-.box-custom-image2  .content-bottom .percent {
+.box-custom-image2  .content-bottom .restaurantName {
     position: absolute;
-    width: 100px;
-    right: 65px;
-    bottom: -335px;
+    width: 300px;
+    left: 120px;
+    bottom: -320px;
     color: #FFD272;
-    text-align: center;
+    text-align: left;
     font-family: 'Kanit';
     font-weight: bold;
-    font-size: 50px;
+    font-size: 35px;
+    letter-spacing: 0.05em;
+}
+
+.box-custom-image2  .content-bottom .caption-menu {
+    position: absolute;
+    width: 300px;
+    left: 125px;
+    bottom: -350px;
+    color: #fff;
+    text-align: left;
+    font-family: 'Kanit';
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 0.05em;
 }
 
 .parent {
 display: grid;
 grid-template-columns: repeat(5, 1fr);
-grid-template-rows: repeat(6, 1fr);
+grid-template-rows: repeat(5, 1fr);
 grid-column-gap: 0px;
 grid-row-gap: 0px;
-width:100%
 }
 
 .div1 { grid-area: 1 / 2 / 2 / 5; }
 .div2 { grid-area: 2 / 1 / 3 / 6; }
 .div3 { grid-area: 3 / 1 / 4 / 6; }
-.div4 { grid-area: 4 / 1 / 5 / 6; }
-.div5 { grid-area: 5 / 1 / 6 / 6; }
-.div6 { grid-area: 6 / 1 / 7 / 3; }
-.div7 { grid-area: 6 / 4 / 7 / 6; }
+.div4 { grid-area: 4 / 1 / 5 / 3; }
+.div5 { grid-area: 4 / 4 / 5 / 6; }
 
 .v-label {
     font-size: 12px !important;

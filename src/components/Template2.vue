@@ -143,7 +143,7 @@ export default {
             this.generateImage().then(() => {
                 this.generateImage().then(() => {
                     this.generateImage().then((blob) => {
-                        saveAs(blob, 'template1.png');
+                        saveAs(blob, 'template2.png');
                         this.isSaving = false;
                     })
                 })
@@ -178,12 +178,13 @@ export default {
     top: -1000%;
     bottom: -1000%;
     margin: auto;
-    min-height: 100%;
-    min-width: 100%;
+    width: 370px;
+    height: 370px;
   z-index: 9;
   border-radius: 3%;
   -o-object-fit: cover;
      object-fit: cover;
+    object-position: 100% 0;
 }
 .box-custom-image2  .content-top {
     position: relative;

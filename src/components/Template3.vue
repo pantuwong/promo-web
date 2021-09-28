@@ -3,7 +3,7 @@
         <v-row no-gutters justify="space-around">
             <v-col cols="12" md="6" lg="6" xl="6" class="d-flex justify-center" >
                 <div ref="imageDom" class="box-custom-image2">
-                    <img ref="imgFood" src="../assets/template1-back.png" height="600" width="600" class="image-food">
+                    <img ref="imgFood" src="../assets/template3-back.png" height="600" width="600" class="image-food">
                     <div class="content-top">
                         <img ref="imgGradient" src="../assets/blackGradient.png"  class="gradient" />
                         <img ref="imgTopLeft" src="../assets/template1-top-left.png"  class="top-left" />
@@ -12,8 +12,8 @@
                         <div class="branch">{{restaurantBranch}}</div>
                     </div>
                     <div class="content-bottom">
-                        <img ref="imgBottomRight" src="../assets/template1-bottom-right.png"  class="bottom-right" />
-                        <div class="percent">{{percent}}</div>
+                        <img ref="imgBottomRight" src="../assets/template3-bottom-right.png"  class="bottom-right" />
+                        <div class="menu">{{menuName}}</div>
                     </div>
                 </div>
             </v-col>
@@ -36,7 +36,7 @@
                         <v-text-field ma-2 v-model="restaurantBranch" label="สาขา" ></v-text-field>
                     </div>
                     <div class="div4">
-                        <v-text-field ma-2 v-model="percent" label="เปอร์เซ็นต์ส่วนลด" ></v-text-field>
+                        <v-text-field ma-2 v-model="menuName" label="เมนู" ></v-text-field>
                     </div>
                     <div class="div6">
                         <v-btn class="white--text" color="#d70f64" style="width:100%;" @click="back()">ย้อนกลับ</v-btn>
@@ -56,13 +56,13 @@ import { toBlob } from 'html-to-image';
 import { saveAs } from 'file-saver';
 const qr = require("qrcode");
 export default {
-    name: "Template1",
+    name: "Template3",
     data: () => ({
         uploadText: 'อัพโหลดรูปภาพ',
         isSaving: false,
-        restaurantName: 'ร้านแฮมบี',
+        restaurantName: 'ร้านขนมหวาน',
         restaurantBranch: 'สาขาทองหล่อ',
-        percent: '20',
+        menuName: 'วาฟเฟิลเบอร์รี่',
         qr: null,
     }),
     mounted() {
@@ -143,7 +143,7 @@ export default {
             this.generateImage().then(() => {
                 this.generateImage().then(() => {
                     this.generateImage().then((blob) => {
-                        saveAs(blob, 'template1.png');
+                        saveAs(blob, 'template3.png');
                         this.isSaving = false;
                     })
                 })
@@ -184,7 +184,6 @@ export default {
   border-radius: 3%;
   -o-object-fit: cover;
      object-fit: cover;
-    object-position: 100% 0;
 }
 .box-custom-image2  .content-top {
     position: relative;
@@ -249,22 +248,22 @@ export default {
 
 .box-custom-image2  .content-bottom .bottom-right {
     position: absolute;
-    width: 370px;
+    width: 400px;
     bottom: -370px;
     right: 0px;
     border-bottom-right-radius: 3%;
 }
 
-.box-custom-image2  .content-bottom .percent {
+.box-custom-image2  .content-bottom .menu {
     position: absolute;
-    width: 100px;
-    right: 65px;
-    bottom: -335px;
-    color: #FFD272;
-    text-align: center;
+    width: 200px;
+    left:150px;
+    top: 320px;
+    color: #fff;
+    text-align: left;
     font-family: 'Kanit';
-    font-weight: bold;
-    font-size: 50px;
+    font-size: 18px;
+    letter-spacing: 0.05em;
 }
 
 .parent {

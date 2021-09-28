@@ -37,6 +37,10 @@
       </v-layout>
       <Template1 v-else-if="selectedTemplate=='เมนูนี้มีส่วนลด'" />
       <Template2 v-else-if="selectedTemplate=='แนะนำเมนูเด็ด!'" />
+      <Template3 v-else-if="selectedTemplate=='เมนูใหม่ท้าให้ลอง'" />
+      <Template4 v-else-if="selectedTemplate=='ร้านใหม่น่าลอง'" />
+      <Template5 v-else-if="selectedTemplate=='ร้านดังใกล้บ้านคุณ'" />
+      <Template6 v-else-if="selectedTemplate=='ส่งเร็ว สุดใจ'" />
     </v-container>
     <v-snackbar
       :timeout="timeout"
@@ -64,12 +68,20 @@
 <script>
 import Template1 from './Template1.vue'
 import Template2 from './Template2.vue'
+import Template3 from './Template3.vue'
+import Template4 from './Template4.vue'
+import Template5 from './Template5.vue'
+import Template6 from './Template6.vue'
 import { mapState, mapActions } from "vuex";
 export default {
   name: "Banner",
   components: {
     Template1,
     Template2,
+    Template3,
+    Template4,
+    Template5,
+    Template6,
   },
   data: () => ({
       snackbar: false,
@@ -77,12 +89,12 @@ export default {
       snackbarText: 'test',
       timeout: 5000,
       books: [
-        { title: 'เมนูนี้มีส่วนลด', image: require('../assets/template1.jpeg')},
+        { title: 'เมนูนี้มีส่วนลด', image: require('../assets/template1.png')},
         { title: 'แนะนำเมนูเด็ด!', image: require('../assets/template2.png')},
-        { title: 'template3',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
-        { title: 'template4',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
-        { title: 'template5',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
-        { title: 'template6',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
+        { title: 'เมนูใหม่ท้าให้ลอง',  image: require('../assets/template3.png')},
+        { title: 'ร้านใหม่น่าลอง', image: require('../assets/template4.png')},
+        { title: 'ร้านดังใกล้บ้านคุณ',  image: require('../assets/template5.png')},
+        { title: 'ส่งเร็ว สุดใจ',  image: require('../assets/template6.png')},
         { title: 'template7',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
         { title: 'template8',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
       ]
