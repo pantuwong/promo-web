@@ -41,6 +41,8 @@
       <Template4 v-else-if="selectedTemplate=='ร้านใหม่น่าลอง'" />
       <Template5 v-else-if="selectedTemplate=='ร้านดังใกล้บ้านคุณ'" />
       <Template6 v-else-if="selectedTemplate=='ส่งเร็ว สุดใจ'" />
+      <Template7 v-else-if="selectedTemplate=='โปรโมชั่นแถมๆ'" />
+      <Template8 v-else-if="selectedTemplate=='ลดทุกเมนู'" />
     </v-container>
     <v-snackbar
       :timeout="timeout"
@@ -72,6 +74,8 @@ import Template3 from './Template3.vue'
 import Template4 from './Template4.vue'
 import Template5 from './Template5.vue'
 import Template6 from './Template6.vue'
+import Template7 from './Template7.vue'
+import Template8 from './Template8.vue'
 import { mapState, mapActions } from "vuex";
 export default {
   name: "Banner",
@@ -82,6 +86,8 @@ export default {
     Template4,
     Template5,
     Template6,
+    Template7,
+    Template8
   },
   data: () => ({
       snackbar: false,
@@ -95,8 +101,8 @@ export default {
         { title: 'ร้านใหม่น่าลอง', image: require('../assets/template4.png')},
         { title: 'ร้านดังใกล้บ้านคุณ',  image: require('../assets/template5.png')},
         { title: 'ส่งเร็ว สุดใจ',  image: require('../assets/template6.png')},
-        { title: 'template7',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
-        { title: 'template8',  image: 'http://www.homelyfreshfoods.com/storage/plan_picture/Food_Hero_Image_1586349408.jpg'},
+        { title: 'โปรโมชั่นแถมๆ',  image: require('../assets/template7.png')},
+        { title: 'ลดทุกเมนู',  image: require('../assets/template8.png')},
       ]
   }),
   computed: {
