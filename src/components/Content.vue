@@ -121,12 +121,13 @@ export default {
       },
   },
   methods: {
-    ...mapActions(["setSelectedTemplate"]),
+    ...mapActions(["setSelectedTemplate", "setTryAccess"]),
     selectTemplate(key) {
       if (!this.isLogin) {
-        this.snackbarColor = "#DC3A45"
-        this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
-        this.snackbar = true
+        // this.snackbarColor = "#DC3A45"
+        // this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
+        // this.snackbar = true
+        this.setTryAccess(true);
       } else { 
         this.setSelectedTemplate(key)
       }

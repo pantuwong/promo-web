@@ -8,6 +8,7 @@ export default new Vuex.Store({
     isLogin: false,
     selectedTemplate: null,
     vendorCode: null,
+    tryAccess: false,
   },
   mutations: {
     setIsLogin(state, isLogin) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     setVendorCode(state, code) {
       state.vendorCode = code;
+    },
+    setTryAccess(state, tryAccess) {
+      state.tryAccess = tryAccess;
     }
   },
   actions: {
@@ -29,6 +33,9 @@ export default new Vuex.Store({
     },
     setVendorCode(context, code) {
       context.commit('setVendorCode', code)
+    },
+    setTryAccess(context, tryAccess) {
+      context.commit('setTryAccess', tryAccess)
     }
   },
   modules: {

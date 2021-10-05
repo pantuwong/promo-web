@@ -283,14 +283,14 @@ export default {
   }),
 
   computed: {
-    ...mapState(["isLogin"]),
+    ...mapState(["isLogin", "tryAccess"]),
     emailHint() {
       return `กรอกรหัสที่ได้รับจากอีเมลชื่อ '${this.email}' และคลิก 'Login'`
     }
   },
 
   methods: {
-    ...mapActions(["setIsLogin","setVendorCode"]),
+    ...mapActions(["setIsLogin","setVendorCode","setTryAccess"]),
     openLoginLogoutDialog() {
       if (this.isLogin) {
         this.login_dialog = false
@@ -454,7 +454,13 @@ export default {
       } else {
         this.otp_disable = false;
       }
-    }
+    },
+    tryAccess(val) {
+      if (val === true && !this.isLogin) {
+        this.openLoginLogoutDialog();
+        this.setTryAccess(false);
+      }
+    },
   }
 };
 </script>
