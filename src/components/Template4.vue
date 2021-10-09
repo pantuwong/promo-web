@@ -51,6 +51,7 @@
 import { mapActions, mapState} from "vuex";
 import { toBlob } from 'html-to-image';
 import { saveAs } from 'file-saver';
+import axios from 'axios';
 const qr = require("qrcode");
 export default {
     name: "Template4",
@@ -144,6 +145,33 @@ export default {
                     })
                 })
             })
+
+            const d = new Date();
+            const dateString = d.toISOString().split('T')[0];
+            const timeString = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+
+            let data = JSON.stringify({
+                vendor_code: this.vendorCode,
+                downloaded_date: dateString,
+                downloaded_time: timeString,
+                template_name: 'template4'
+            });
+
+            let config = {
+                method: "post",
+                url: `${process.env.VUE_APP_API_URL}/api/log`,
+                headers: {
+                "Content-Type": "application/json"
+                },
+                data: data
+            };
+            axios(config)
+                .then(function() {
+                    console.log('log success')
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
         }
     },
 }

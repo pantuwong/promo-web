@@ -444,7 +444,15 @@ export default {
         }
 
         this.logout_dialog = false
-    }
+    },
+    popstateEventAction() {
+        // ... some action triggered when the back button is clicked
+        alert('Back')
+        this.removePopstateEventAction();
+      },
+    removePopstateEventAction() {
+      window.removeEventListener('popstate', this.popstateEventAction);
+    },
   },
 
   watch: {
@@ -461,8 +469,11 @@ export default {
         this.setTryAccess(false);
       }
     },
+  },
+  created() {
+    window.addEventListener('popstate', this.popstateEventAction );
   }
-};
+}
 </script>
 
 <style>
