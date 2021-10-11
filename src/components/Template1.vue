@@ -39,11 +39,14 @@
                         <v-text-field ma-2 v-model="percent" label="เปอร์เซ็นต์ส่วนลด" ></v-text-field>
                     </div>
                     <div class="div6">
-                        <v-btn class="white--text" color="#d70f64" style="width:100%;" @click="back()">ย้อนกลับ</v-btn>
+                        <v-btn class="white--text" color="#d70f64" style="margin-right: 5px; width:100%;" @click="back()">ย้อนกลับ</v-btn>
                     </div>
                     <div class="div7">
-                        <v-btn v-if="isSaving" loading ref="save_pic" class="white--text" style="width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
-                        <v-btn v-else ref="save_pic" class="white--text" style="width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
+                        <a href="../assets/FPD_Discount_Menu.ai"><v-btn class="white--text" color="#d70f64" style="margin-right: 5px; width:100%;">ดาวน์โหลด template Ai</v-btn></a>
+                    </div>
+                    <div class="div8">
+                        <v-btn v-if="isSaving" loading ref="save_pic" class="white--text" style="margin-left:5px; width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
+                        <v-btn v-else ref="save_pic" class="white--text" style="margin-left:5px;  width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
                     </div>
                 </div>
             </v-col>
@@ -176,6 +179,9 @@ export default {
                 .catch(function(error) {
                     console.log(error);
                 });
+        },
+        downloadAI() {
+
         }
     },
 }
@@ -297,20 +303,20 @@ export default {
 
 .parent {
 display: grid;
-grid-template-columns: repeat(5, 1fr);
+grid-template-columns: repeat(6, 1fr);
 grid-template-rows: repeat(6, 1fr);
 grid-column-gap: 0px;
 grid-row-gap: 0px;
-width:100%
 }
 
-.div1 { grid-area: 1 / 2 / 2 / 5; }
-.div2 { grid-area: 2 / 1 / 3 / 6; }
-.div3 { grid-area: 3 / 1 / 4 / 6; }
-.div4 { grid-area: 4 / 1 / 5 / 6; }
-.div5 { grid-area: 5 / 1 / 6 / 6; }
+.div1 { grid-area: 1 / 2 / 2 / 6; }
+.div2 { grid-area: 2 / 1 / 3 / 7; }
+.div3 { grid-area: 3 / 1 / 4 / 7; }
+.div4 { grid-area: 4 / 1 / 5 / 7; }
+.div5 { grid-area: 5 / 1 / 6 / 7; }
 .div6 { grid-area: 6 / 1 / 7 / 3; }
-.div7 { grid-area: 6 / 4 / 7 / 6; }
+.div7 { grid-area: 6 / 3 / 7 / 5; }
+.div8 { grid-area: 6 / 5 / 7 / 7; }
 
 .v-label {
     font-size: 12px !important;
