@@ -12,8 +12,10 @@
                         <div class="branch">{{restaurantBranch}}</div>
                     </div>
                     <div class="content-bottom">
-                        <img ref="imgBottomRight" src="../assets/template1-bottom-right.png"  class="bottom-right" />
+                        <img ref="imgBottomRight" src="../assets/template1_bottom_right.png"  class="bottom-right" />
                         <div class="percent">{{percent}}</div>
+                        <div class="menu">{{menu}}</div>
+                        <div class="min">{{min}}</div>
                     </div>
                 </div>
             </v-col>
@@ -36,17 +38,23 @@
                         <v-text-field ma-2 v-model="restaurantBranch" label="สาขา" ></v-text-field>
                     </div>
                     <div class="div4">
+                        <v-text-field ma-2 v-model="menu" label="เมนู" ></v-text-field>
+                    </div>
+                    <div class="div5">
                         <v-text-field ma-2 v-model="percent" label="เปอร์เซ็นต์ส่วนลด" ></v-text-field>
                     </div>
                     <div class="div6">
-                        <v-btn class="white--text" color="#d70f64" style="margin-right: 5px; width:100%;" @click="back()">ย้อนกลับ</v-btn>
+                        <v-text-field ma-2 v-model="min" label="ขั้นต่ำ" ></v-text-field>
                     </div>
                     <div class="div7">
-                        <a href="../assets/FPD_Discount_Menu.ai"><v-btn class="white--text" color="#d70f64" style="margin-right: 5px; width:100%;">ดาวน์โหลด template Ai</v-btn></a>
+                        <v-btn class="white--text" color="#d70f64" style="width: 100%" @click="back()">ย้อนกลับ</v-btn>
                     </div>
                     <div class="div8">
-                        <v-btn v-if="isSaving" loading ref="save_pic" class="white--text" style="margin-left:5px; width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
-                        <v-btn v-else ref="save_pic" class="white--text" style="margin-left:5px;  width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
+                        <v-btn href="/files/FPD_Discount_Menu.ai" class="white--text" color="#d70f64" style="margin-right:5px; margin-left:5px; width:100%;" @click="downloadAI()">ดาวน์โหลด Ai</v-btn>
+                    </div>
+                    <div class="div9">
+                        <v-btn v-if="isSaving" loading ref="save_pic" class="white--text" style="width: 100%" scolor="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
+                        <v-btn v-else ref="save_pic" class="white--text" color="#d70f64" style="width: 100%" @click="toImage()">บันทึกรูปภาพ</v-btn>
                     </div>
                 </div>
             </v-col>
@@ -67,6 +75,8 @@ export default {
         restaurantName: 'ร้านแฮมบี',
         restaurantBranch: 'สาขาทองหล่อ',
         percent: '20',
+        menu: 'เมนูที่ร่วมรายการ',
+        min: '200',
         qr: null,
     }),
     mounted() {
@@ -76,7 +86,7 @@ export default {
         } else {
             url = `https://www.foodpanda.co.th/restaurant/${this.vendorCode}`
         }
-        console.log(url)
+
         qr.toDataURL(url, (err, src) => {
             if (err) {
                 console.log(err)
@@ -180,9 +190,6 @@ export default {
                     console.log(error);
                 });
         },
-        downloadAI() {
-
-        }
     },
 }
 </script>
@@ -292,14 +299,39 @@ export default {
 .box-custom-image2  .content-bottom .percent {
     position: absolute;
     width: 100px;
-    right: 65px;
-    bottom: -335px;
+    right: 75px;
+    bottom: -325px;
     color: #FFD272;
     text-align: center;
     font-family: 'Kanit';
     font-weight: bold;
-    font-size: 50px;
+    font-size: 40px;
 }
+
+.box-custom-image2  .content-bottom .menu {
+    position: absolute;
+    width: 400px;
+    left: 30px;
+    bottom: -341px;
+    color: #fff;
+    text-align: center;
+    font-family: 'Kanit';
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.box-custom-image2  .content-bottom .min {
+    position: absolute;
+    width: 400px;
+    left: 65px;
+    bottom: -357px;
+    color: #fff;
+    text-align: center;
+    font-family: 'Kanit';
+    font-weight: bold;
+    font-size: 10px;
+}
+
 
 .parent {
 display: grid;
@@ -313,11 +345,11 @@ grid-row-gap: 0px;
 .div2 { grid-area: 2 / 1 / 3 / 7; }
 .div3 { grid-area: 3 / 1 / 4 / 7; }
 .div4 { grid-area: 4 / 1 / 5 / 7; }
-.div5 { grid-area: 5 / 1 / 6 / 7; }
-.div6 { grid-area: 6 / 1 / 7 / 3; }
-.div7 { grid-area: 6 / 3 / 7 / 5; }
-.div8 { grid-area: 6 / 5 / 7 / 7; }
-
+.div5 { grid-area: 5 / 1 / 6 / 3; }
+.div6 { grid-area: 5 / 5 / 6 / 7; }
+.div7 { grid-area: 6 / 1 / 7 / 2; }
+.div8 { grid-area: 6 / 3 / 7 / 5; }
+.div9 { grid-area: 6 / 6 / 7 / 7; }
 .v-label {
     font-size: 12px !important;
 }

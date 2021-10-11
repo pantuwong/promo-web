@@ -54,6 +54,9 @@
                         <v-btn class="white--text" color="#d70f64" style="width:100%;" @click="back()">ย้อนกลับ</v-btn>
                     </div>
                     <div class="div9">
+                        <v-btn href="/files/FPD_BOGO.ai" class="white--text" color="#d70f64" style="margin-right:5px; margin-left:5px; width:100%;" @click="downloadAI()">ดาวน์โหลด Ai</v-btn>
+                    </div>
+                    <div class="div10">
                         <v-btn v-if="isSaving" loading ref="save_pic" class="white--text" style="width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
                         <v-btn v-else ref="save_pic" class="white--text" style="width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
                     </div>
@@ -346,21 +349,22 @@ export default {
 
 .parent {
 display: grid;
-grid-template-columns: repeat(5, 1fr);
+grid-template-columns: repeat(6, 1fr);
 grid-template-rows: repeat(6, 1fr);
 grid-column-gap: 0px;
 grid-row-gap: 0px;
 }
 
-.div1 { grid-area: 1 / 2 / 2 / 5; }
+.div1 { grid-area: 1 / 2 / 2 / 6; }
 .div2 { grid-area: 2 / 1 / 3 / 3; }
-.div3 { grid-area: 2 / 4 / 3 / 6; }
-.div4 { grid-area: 3 / 1 / 4 / 6; }
+.div3 { grid-area: 2 / 5 / 3 / 7; }
+.div4 { grid-area: 3 / 1 / 4 / 7; }
 .div5 { grid-area: 4 / 1 / 5 / 3; }
-.div6 { grid-area: 4 / 4 / 5 / 6; }
-.div7 { grid-area: 5 / 1 / 6 / 6; }
-.div8 { grid-area: 6 / 1 / 7 / 3; }
-.div9 { grid-area: 6 / 4 / 7 / 6; }
+.div6 { grid-area: 4 / 5 / 5 / 7; }
+.div7 { grid-area: 5 / 1 / 6 / 7; }
+.div8 { grid-area: 6 / 1 / 7 / 2; }
+.div9 { grid-area: 6 / 3 / 7 / 5; }
+.div10 { grid-area: 6 / 6 / 7 / 7; }
 
 .v-label {
     font-size: 12px !important;
