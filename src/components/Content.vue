@@ -13,7 +13,7 @@
                 :aspect-ratio="1 / 1"
                 class="media"
                 :src="book.image"
-                @click="selectTemplate(book.title)"
+                @click="selectTemplate(book.idx)"
               >
               </v-img>
             </div>
@@ -35,14 +35,16 @@
           </v-card>
         </div>
       </v-layout>
-      <Template1 v-else-if="selectedTemplate=='เมนูนี้มีส่วนลด'" />
-      <Template2 v-else-if="selectedTemplate=='แนะนำเมนูเด็ด!'" />
-      <Template3 v-else-if="selectedTemplate=='เมนูใหม่ท้าให้ลอง'" />
-      <Template4 v-else-if="selectedTemplate=='ร้านใหม่น่าลอง'" />
-      <Template5 v-else-if="selectedTemplate=='ร้านดังใกล้บ้านคุณ'" />
-      <Template6 v-else-if="selectedTemplate=='ส่งเร็ว สุดใจ'" />
-      <Template7 v-else-if="selectedTemplate=='โปรโมชั่นแถมๆ'" />
-      <Template8 v-else-if="selectedTemplate=='ลดทุกเมนู'" />
+      <Template1 v-else-if="selectedTemplate==1" />
+      <Template2 v-else-if="selectedTemplate==2" />
+      <Template3 v-else-if="selectedTemplate==3" />
+      <Template4 v-else-if="selectedTemplate==4" />
+      <Template5 v-else-if="selectedTemplate==5" />
+      <Template6 v-else-if="selectedTemplate==6" />
+      <Template7 v-else-if="selectedTemplate==7" />
+      <Template8 v-else-if="selectedTemplate==8" />
+      <Template9 v-else-if="selectedTemplate==9" />
+      <Template10 v-else-if="selectedTemplate==10" />
     </v-container>
     <v-snackbar
       :timeout="timeout"
@@ -76,6 +78,8 @@ import Template5 from './Template5.vue'
 import Template6 from './Template6.vue'
 import Template7 from './Template7.vue'
 import Template8 from './Template8.vue'
+import Template9 from './Template9.vue'
+import Template10 from './Template10.vue'
 import { mapState, mapActions } from "vuex";
 export default {
   name: "Banner",
@@ -87,7 +91,9 @@ export default {
     Template5,
     Template6,
     Template7,
-    Template8
+    Template8,
+    Template9,
+    Template10,
   },
   data: () => ({
       snackbar: false,
@@ -95,14 +101,16 @@ export default {
       snackbarText: 'test',
       timeout: 5000,
       books: [
-        { title: 'เมนูนี้มีส่วนลด', image: require('../assets/template1.png')},
-        { title: 'แนะนำเมนูเด็ด!', image: require('../assets/template2.png')},
-        { title: 'เมนูใหม่ท้าให้ลอง',  image: require('../assets/template3.png')},
-        { title: 'ร้านใหม่น่าลอง', image: require('../assets/template4.png')},
-        { title: 'ร้านดังใกล้บ้านคุณ',  image: require('../assets/template5.png')},
-        { title: 'ส่งเร็ว สุดใจ',  image: require('../assets/template6.png')},
-        { title: 'โปรโมชั่นแถมๆ',  image: require('../assets/template7.png')},
-        { title: 'ลดทุกเมนู',  image: require('../assets/template8.png')},
+        { title: 'เมนูนี้มีส่วนลด', idx: 1, image: require('../assets/template1.png')},
+        { title: 'แนะนำเมนูเด็ด!', idx: 2,image: require('../assets/template2.png')},
+        { title: 'เมนูใหม่ท้าให้ลอง',  idx: 3,image: require('../assets/template3.png')},
+        { title: 'ร้านใหม่น่าลอง', idx: 4,image: require('../assets/template4.png')},
+        { title: 'ร้านดังใกล้บ้านคุณ',  idx: 5,image: require('../assets/template5.png')},
+        { title: 'ส่งเร็ว สุดใจ',  idx: 6,image: require('../assets/template6.png')},
+        { title: 'โปรโมชั่นแถมๆ',  idx: 7,image: require('../assets/template7.png')},
+        { title: 'ลดทุกเมนู',  idx: 8, image: require('../assets/template8.png')},
+        { title: 'ส่งเร็ว สุดใจ',  idx: 9, image: require('../assets/template9.png')},
+        { title: 'ส่งเร็ว สุดใจ',  idx: 10, image: require('../assets/template9.png')},
       ]
   }),
   computed: {
@@ -123,14 +131,14 @@ export default {
   methods: {
     ...mapActions(["setSelectedTemplate", "setTryAccess"]),
     selectTemplate(key) {
-      // if (!this.isLogin) {
-      //   // this.snackbarColor = "#DC3A45"
-      //   // this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
-      //   // this.snackbar = true
-      //   this.setTryAccess(true);
-      // } else { 
+      if (!this.isLogin) {
+        // this.snackbarColor = "#DC3A45"
+        // this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
+        // this.snackbar = true
+        this.setTryAccess(true);
+      } else { 
         this.setSelectedTemplate(key)
-      // }
+      }
     }
   }
 };
