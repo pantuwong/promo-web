@@ -140,7 +140,7 @@ export default {
             this.generateImage().then(() => {
                 this.generateImage().then(() => {
                     this.generateImage().then((blob) => {
-                        saveAs(blob, 'template6.png');
+                        saveAs(blob, 'FPD_Promote_Store_Fast.png');
                         this.isSaving = false;
                     })
                 })
@@ -153,7 +153,7 @@ export default {
                 vendor_code: this.vendorCode,
                 downloaded_date: dateString,
                 downloaded_time: timeString,
-                template_name: 'template6'
+                template_name: 'FPD_Promote_Store_Fast'
             });
 
             let config = {
