@@ -146,10 +146,10 @@
       <Content />
     </v-main>
 
-    <v-footer padless>
+    <v-footer  app bottom fixed padless>
       <v-col
         class="text-center"
-        style="background-color: #d70f64; color: white;"
+        style="background-color: #d70f64; color: white; "
         cols="12"
       >
         @2021 foodpanda

@@ -1,7 +1,19 @@
 <template>
-  <div>
-    <img :style="bannerStyle" :src="bannerName"/>
-  </div>
+  <v-row :style="{'height':height}">
+    <v-col class="d-flex text-wrap" :cols="cols" style="height: 100%; position:relative;">
+      <div class="ml-2 mr-2self-align-center text-center" style="width:85%; height: auto; top:40%; position:absolute;">
+        <p :style="{'font-size': font_size, 'word-wrap': 'break-word'}" style="color:grey;"><span style="color: #d70f64; font-family: Avenir">foodpanda</span> <b>สั่งกินสุขใจ แชร์ไปในโซเชียล! </b></p>
+        <p :style="{'font-size': caption_size, 'word-wrap': 'break-word'}" style="color:grey;">สร้างรูปโปรโมทร้านค้าด้วยตัวเอง พร้อม QR Code ให้ลูกค้าสั่งอาหารกับคุณได้ทันที ลองเลย! </p>
+      </div>
+    </v-col>
+    <v-col :cols="12-cols" style="height: 100%;">
+      <v-img
+        style="height:100%; overflow-x: hidden"
+        position="left top"
+        :src="require('../assets/banner.jpg')"
+      ></v-img>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -11,24 +23,7 @@
     data: () => ({
       
     }),
-    methods: {
-    },
     computed: {
-      bannerName () {
-        let h = require('../assets/website.jpg');
-        switch (this.$vuetify.breakpoint.name) {
-          case 'xs': h = require('../assets/mobile.jpg'); break;
-          case 'sm': h = require('../assets/mobile.jpg'); break;
-          case 'md': h = require('../assets/ipad.jpg'); break;
-          case 'lg': h = require('../assets/website.jpg'); break;
-          case 'xl': h = require('../assets/website.jpg'); break;
-        }
-        return h;
-      },
-      bannerStyle () {
-        let s = 'width: 100%; height: auto;';
-        return s;
-      },
       height () {
         let h = '35vh';
         switch (this.$vuetify.breakpoint.name) {

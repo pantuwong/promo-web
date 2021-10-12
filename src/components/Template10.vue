@@ -47,7 +47,7 @@
                         <v-btn class="white--text" color="#d70f64" style="width: 100%" @click="back()">ย้อนกลับ</v-btn>
                     </div>
                     <div class="div7">
-                        <v-btn href="/files/FPD_Discount_Shops1.ai" class="white--text" color="#d70f64" style="margin-right:5px; margin-left:5px; width:100%;" @click="downloadAI()">ดาวน์โหลด Ai</v-btn>
+                        <v-btn href="/files/FPD_Discount_Shops2.ai" class="white--text" color="#d70f64" style="margin-right:5px; margin-left:5px; width:100%;" @click="downloadAI()">ดาวน์โหลด Ai</v-btn>
                     </div>
                     <div class="div8">
                         <v-btn v-if="isSaving" loading ref="save_pic" class="white--text" style="width: 100%" scolor="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
@@ -69,7 +69,7 @@ export default {
     data: () => ({
         uploadText: 'อัพโหลดรูปภาพ',
         isSaving: false,
-        restaurantName: 'ร้านสะอาดช็อป',
+        restaurantName: 'ป้าน้อยผักสด',
         percent: '50',
         min: '200',
         code: 'ILUVPANDA',
@@ -153,7 +153,7 @@ export default {
             this.generateImage().then(() => {
                 this.generateImage().then(() => {
                     this.generateImage().then((blob) => {
-                        saveAs(blob, 'FPD_Discount_Shops1.png');
+                        saveAs(blob, 'FPD_Discount_Shops2.png');
                         this.isSaving = false;
                     })
                 })
@@ -167,7 +167,7 @@ export default {
                 vendor_code: this.vendorCode,
                 downloaded_date: dateString,
                 downloaded_time: timeString,
-                template_name: 'FPD_Discount_Shops1'
+                template_name: 'FPD_Discount_Shops2'
             });
 
             let config = {

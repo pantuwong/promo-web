@@ -2,7 +2,7 @@
   <div id="app" data-app>
     <v-container style="height:50vh; width:100%; overflow-y:scroll; margin-top:30px; margin-bottom-10px">
       <v-layout v-if="selectedTemplate==null" row wrap justify-center align-center>
-        <div v-for="book in books" :key="book.title">
+        <div v-for="book in books" :key="book.idx">
           <v-card
             flat
             style="margin:10px; background-color: transparent;"
@@ -110,7 +110,7 @@ export default {
         { title: 'โปรโมชั่นแถมๆ',  idx: 7,image: require('../assets/template7.png')},
         { title: 'ลดทุกเมนู',  idx: 8, image: require('../assets/template8.png')},
         { title: 'ส่งเร็ว สุดใจ',  idx: 9, image: require('../assets/template9.png')},
-        { title: 'ส่งเร็ว สุดใจ',  idx: 10, image: require('../assets/template9.png')},
+        { title: 'ส่งเร็ว สุดใจ',  idx: 10, image: require('../assets/template10.png')},
       ]
   }),
   computed: {
@@ -131,14 +131,14 @@ export default {
   methods: {
     ...mapActions(["setSelectedTemplate", "setTryAccess"]),
     selectTemplate(key) {
-      if (!this.isLogin) {
-        // this.snackbarColor = "#DC3A45"
-        // this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
-        // this.snackbar = true
-        this.setTryAccess(true);
-      } else { 
+      // if (!this.isLogin) {
+      //   // this.snackbarColor = "#DC3A45"
+      //   // this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
+      //   // this.snackbar = true
+      //   this.setTryAccess(true);
+      // } else { 
         this.setSelectedTemplate(key)
-      }
+      // }
     }
   }
 };
