@@ -147,13 +147,22 @@
     </v-main>
 
     <v-footer  app bottom fixed padless>
-      <v-col
-        class="text-center"
-        style="background-color: #d70f64; color: white; "
-        cols="12"
-      >
-        @2021 foodpanda
-      </v-col>
+      <v-row>
+        <v-col
+          class="text-center"
+          style="background-color: #d70f64; color: white; margin-bottom:3px;"
+          cols="12"
+        >
+          @2021 foodpanda
+        </v-col>
+        <!-- <v-col
+          class="text-center"
+          style="background-color: #d70f64; color: white; "
+          cols="6"
+        >
+          คู่มือการใช้งาน
+        </v-col> -->
+      </v-row>
     </v-footer>
 
     <v-dialog v-model="logout_dialog" persistent max-width="600px">

@@ -101,16 +101,16 @@ export default {
       snackbarText: 'test',
       timeout: 5000,
       books: [
-        { title: 'เมนูนี้มีส่วนลด', idx: 1, image: require('../assets/template1.png')},
-        { title: 'แนะนำเมนูเด็ด!', idx: 2,image: require('../assets/template2.png')},
-        { title: 'เมนูใหม่ท้าให้ลอง',  idx: 3,image: require('../assets/template3.png')},
+        { title: 'สินค้าชิ้นนี้มีส่วนลด', idx: 1, image: require('../assets/template1.png')},
+        { title: 'แนะนำสินค้าเด็ด!', idx: 2,image: require('../assets/template2.png')},
+        { title: 'สินค้าใหม่ท้าให้ลอง',  idx: 3,image: require('../assets/template3.png')},
         { title: 'ร้านใหม่น่าลอง', idx: 4,image: require('../assets/template4.png')},
         { title: 'ร้านดังใกล้บ้านคุณ',  idx: 5,image: require('../assets/template5.png')},
         { title: 'ส่งเร็ว สุดใจ',  idx: 6,image: require('../assets/template6.png')},
         { title: 'โปรโมชั่นแถมๆ',  idx: 7,image: require('../assets/template7.png')},
-        { title: 'ลดทุกเมนู',  idx: 8, image: require('../assets/template8.png')},
-        { title: 'ส่งเร็ว สุดใจ',  idx: 9, image: require('../assets/template9.png')},
-        { title: 'ส่งเร็ว สุดใจ',  idx: 10, image: require('../assets/template10.png')},
+        { title: 'ลดทั้งร้าน!',  idx: 8, image: require('../assets/template8.png')},
+        { title: 'โปรโมชั่น%',  idx: 9, image: require('../assets/template9.png')},
+        { title: 'โปรโมชั่นส่วนลด',  idx: 10, image: require('../assets/template10.png')},
       ]
   }),
   computed: {
@@ -123,7 +123,7 @@ export default {
           case 'sm': w = '125px'; break;
           case 'md': w = '250px'; break;
           case 'lg': w = '300px'; break;
-          case 'xl': w = '400px'; break;
+          case 'xl': w = '300px'; break;
         }
         return w;
       },
@@ -131,14 +131,14 @@ export default {
   methods: {
     ...mapActions(["setSelectedTemplate", "setTryAccess"]),
     selectTemplate(key) {
-      // if (!this.isLogin) {
-      //   // this.snackbarColor = "#DC3A45"
-      //   // this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
-      //   // this.snackbar = true
-      //   this.setTryAccess(true);
-      // } else { 
+      if (!this.isLogin) {
+        // this.snackbarColor = "#DC3A45"
+        // this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
+        // this.snackbar = true
+        this.setTryAccess(true);
+      } else { 
         this.setSelectedTemplate(key)
-      // }
+      }
     }
   }
 };
