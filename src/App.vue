@@ -363,6 +363,7 @@ export default {
     },
     async login() { 
       let data = JSON.stringify({
+        vendor_code: this.vendorCode,
         email: this.email,
         otp: this.password
       });
