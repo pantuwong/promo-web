@@ -301,7 +301,7 @@ export default {
   methods: {
     ...mapActions(["setIsLogin","setVendorCode","setTryAccess"]),
     lowerCase() {
-        this.code = this.code.toLowerCase();
+        this.vendorCode = this.vendorCode.toLowerCase();
     },
     openLoginLogoutDialog() {
       if (this.isLogin) {
