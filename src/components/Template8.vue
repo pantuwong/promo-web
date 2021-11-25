@@ -2,17 +2,17 @@
     <v-container fill-height fluid>
         <v-row no-gutters justify="space-around">
             <v-col cols="12" md="6" lg="6" xl="6" class="d-flex justify-center" >
-                <div ref="imageDom" class="box-custom-image2">
-                    <img ref="imgFood" src="../assets/template8-back.png" height="600" width="600" class="image-food">
+                <div id="imageDom" ref="imageDom" class="box-custom-image2">
+                    <img id="imgFood" ref="imgFood" src="../assets/template8-back.png" height="600" width="600" class="image-food">
                     <div class="content-top">
-                        <img ref="imgGradient" src="../assets/blackGradient.png"  class="gradient" />
+                        <img id="imgGradient" ref="imgGradient" src="../assets/blackGradient.png"  class="gradient" />
                         <img ref="imgTopLeft" src="../assets/template1-top-left.png"  class="top-left" />
                         <img ref="qr" :src="qr" class="qr">
                         <div class="name">{{restaurantName}}</div>
                         <div class="branch">{{restaurantBranch}}</div>
                     </div>
                     <div class="content-bottom">
-                        <img ref="imgBottomRight" src="../assets/template8-bottom-right.png"  class="bottom-right" />
+                        <img id="imgBottomRight" ref="imgBottomRight" src="../assets/template8-bottom-right.png"  class="bottom-right" />
                         <div class="percent">{{percent}}</div>
                         <div class="minimum">{{minimum}}</div>
                     </div>
@@ -106,10 +106,14 @@ export default {
             var files = e.target.files || e.dataTransfer.files;
             if (!files.length) return;
             this.createImage(files[0]);
-            this.$refs.imageDom.style = "border-radius: 3% !important";
-            this.$refs.imgFood.style = "border-radius: 3% !important";
-            this.$refs.imgGradient.style = "border-radius: 3% !important";
-            this.$refs.imgBottomRight.style = "border-radius: 3% !important"; 
+            let imageDom = document.getElementById('imageDom');
+            let imgFood = document.getElementById('imgFood');
+            let imgGradient = document.getElementById('imgGradient');
+            let imgBottomRight = document.getElementById('imgBottomRight');
+            imageDom.style = "border-radius: 3% !important";
+            imgFood.style = "border-radius: 3% !important";
+            imgGradient.style = "border-radius: 3% !important";
+            imgBottomRight.style = "border-radius: 3% !important"; 
         },
         createImage(file) {
             console.log(qr)
@@ -133,7 +137,7 @@ export default {
         },
         generateImage() {
             return new Promise(resolve => {
-                const node = this.$refs.imageDom;
+                const node = document.getElementById('imageDom');
                 toBlob(node)
                     .then((page) => {
                         return resolve(page);
@@ -144,10 +148,14 @@ export default {
             // var isIphone = navigator.userAgent.indexOf("iPhone") != -1;
             // var isIpod = navigator.userAgent.indexOf("iPod") != -1;
             // var isIpad = navigator.userAgent.indexOf("iPad") != -1;
-            this.$refs.imageDom.style = "border-radius: 0% !important";
-            this.$refs.imgFood.style = "border-radius: 0% !important";
-            this.$refs.imgGradient.style = "border-radius: 0% !important";
-            this.$refs.imgBottomRight.style = "border-radius: 0% !important";
+            let imageDom = document.getElementById('imageDom');
+            let imgFood = document.getElementById('imgFood');
+            let imgGradient = document.getElementById('imgGradient');
+            let imgBottomRight = document.getElementById('imgBottomRight');
+            imageDom.style = "border-radius: 0% !important";
+            imgFood.style = "border-radius: 0% !important";
+            imgGradient.style = "border-radius: 0% !important";
+            imgBottomRight.style = "border-radius: 0% !important";
             this.isSaving = true;
             this.generateImage().then(() => {
                 this.generateImage().then(() => {
