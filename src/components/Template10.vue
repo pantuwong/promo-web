@@ -120,7 +120,7 @@ export default {
             console.log(qr)
             var reader = new FileReader();
             var vm = this;
-            const preview = document.querySelector('img');
+            const preview = document.getElementById('imageDom');
 
             reader.addEventListener("load", function () {
                 // convert image file to base64 string
