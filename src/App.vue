@@ -204,7 +204,7 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field ma-2 v-model="vendorCode" label="Vendor Code*" required 
+                <v-text-field ma-2 v-model="vendorCode" @keyup="lowerCase" label="Vendor Code*" required 
                 hint="วิธีการดูรหัสร้านค้า: เปิดแท็บเล็ต -> เข้าไปที่เมนู 'ตั้งค่า' -> รหัสร้านค้าจะอยู่ในส่วน 'หมายเลขร้านบนแพลตฟอร์ม' เช่น a3bc"></v-text-field>
               </v-col>
             </v-row>
@@ -300,6 +300,9 @@ export default {
 
   methods: {
     ...mapActions(["setIsLogin","setVendorCode","setTryAccess"]),
+    lowerCase() {
+        this.code = this.code.toLowerCase();
+    },
     openLoginLogoutDialog() {
       if (this.isLogin) {
         this.login_dialog = false
