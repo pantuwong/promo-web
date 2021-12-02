@@ -1,7 +1,7 @@
 <template>
   <div id="app" data-app>
     <v-container style="height:50vh; width:100%; overflow-y:scroll; margin-top:30px; margin-bottom-10px">
-      <v-layout v-if="selectedTemplate==null" row wrap justify-center align-center>
+      <v-layout v-if="selectedTemplate==null" row wrap justify-center >
         <div v-for="book in books" :key="book.idx">
           <v-card
             flat
@@ -131,15 +131,14 @@ export default {
   methods: {
     ...mapActions(["setSelectedTemplate", "setTryAccess"]),
     selectTemplate(key) {
-      // if (!this.isLogin) {
-      //   // this.snackbarColor = "#DC3A45"
-      //   // this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
-      //   // this.snackbar = true
-      //   this.setTryAccess(true);
-      // } else { 
-      //   this.setSelectedTemplate(key)
-      // }
-      this.setSelectedTemplate(key)
+      if (!this.isLogin) {
+        // this.snackbarColor = "#DC3A45"
+        // this.snackbarText = `โปรดทำการ Login ก่อนใช้งาน`
+        // this.snackbar = true
+        this.setTryAccess(true);
+      } else { 
+        this.setSelectedTemplate(key)
+      }
     }
   }
 };

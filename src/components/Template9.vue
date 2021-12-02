@@ -51,7 +51,7 @@
                         <v-btn class="white--text" color="#d70f64" style="width: 100%" @click="back()">ย้อนกลับ</v-btn>
                     </div>
                     <div class="div8">
-                        <v-btn href="/files/FPD_Discount_Shops1.ai" class="white--text" color="#d70f64" style="margin-right:5px; margin-left:5px; width:100%;" :style="{'font-size': fontSize}">ดาวน์โหลด AI</v-btn>
+                        <a href="/files/FPD_Discount_Shops1.ai"  download="FPD_Discount_Shops1.ai"><v-btn class="white--text" color="#d70f64" style="margin-right:5px; margin-left:5px; width:100%;" :style="{'font-size': fontSize}">ดาวน์โหลด AI</v-btn></a>
                     </div>
                     <div class="div9">
                         <v-btn v-if="isSaving" loading ref="save_pic" class="white--text" style="width: 100%" scolor="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>

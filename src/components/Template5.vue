@@ -39,7 +39,7 @@
                         <v-btn class="white--text" color="#d70f64" style="width:100%;" @click="back()">ย้อนกลับ</v-btn>
                     </div>
                     <div class="div5">
-                        <v-btn href="/files/FPD_Promote_Store_Hot.ai" class="white--text" color="#d70f64" style="margin-right:5px; margin-left:5px; width:100%;" :style="{'font-size': fontSize}">ดาวน์โหลด AI</v-btn>
+                        <a href="/files/FPD_Promote_Store_Hot.ai" download="FPD_Promote_Store_Hot.ai"><v-btn class="white--text" color="#d70f64" style="margin-right:5px; margin-left:5px; width:100%;" :style="{'font-size': fontSize}">ดาวน์โหลด AI</v-btn></a>
                     </div>
                     <div class="div6">
                         <v-btn v-if="isSaving" loading ref="save_pic" class="white--text" style="width:100%;" color="#d70f64" @click="toImage()">บันทึกรูปภาพ</v-btn>
@@ -299,15 +299,18 @@ export default {
 
 .box-custom-image2  .content-bottom .restaurantName {
     position: absolute;
-    width: 300px;
+    width: 230px;
     left: 120px;
     bottom: -320px;
     color: #FFD272;
     text-align: left;
     font-family: 'Kanit';
     font-weight: bold;
-    font-size: 35px;
+    font-size: 30px;
     letter-spacing: 0.05em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .box-custom-image2  .content-bottom .caption-menu {
