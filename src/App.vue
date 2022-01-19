@@ -141,19 +141,17 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main> 
+    <v-main row wrap justify-center> 
       <Banner />
-      <v-layout row wrap justify-center >
         <div flat class="text-center" style="margin-top: 20px;">
           <iframe 
-            width="560" height="315" src="https://www.youtube.com/embed/JoDclMFEXN4" 
+            :width="ytWidth" :height="ytHeight" src="https://www.youtube.com/embed/JoDclMFEXN4" 
             title="YouTube video player" 
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen>
           </iframe>
         </div>
-      </v-layout>
       <Content />
     </v-main>
 
@@ -306,7 +304,31 @@ export default {
     ...mapState(["isLogin", "tryAccess"]),
     emailHint() {
       return `กรอกรหัสที่ได้รับจากอีเมลชื่อ '${this.email}' และคลิก 'Login'`
-    }
+    },
+    ytWidth () {
+      console.log(this.$vuetify.breakpoint.name)
+      let w = '300px';
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': w = '280'; break;
+        case 'sm': w = '560'; break;
+        case 'md': w = '560'; break;
+        case 'lg': w = '560'; break;
+        case 'xl': w = '560'; break;
+      }
+      return w;
+    },
+    ytHeight () {
+      console.log(this.$vuetify.breakpoint.name)
+      let w = '300px';
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': w = '157'; break;
+        case 'sm': w = '315'; break;
+        case 'md': w = '315'; break;
+        case 'lg': w = '315'; break;
+        case 'xl': w = '315'; break;
+      }
+      return w;
+    },
   },
 
   methods: {
