@@ -143,6 +143,17 @@
 
     <v-main> 
       <Banner />
+      <v-layout row wrap justify-center >
+        <div flat class="text-center" style="margin-top: 20px;">
+          <iframe 
+            width="560" height="315" src="https://www.youtube.com/embed/JoDclMFEXN4" 
+            title="YouTube video player" 
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </v-layout>
       <Content />
     </v-main>
 
