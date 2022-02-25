@@ -187,8 +187,8 @@ export default {
                 vendor_code: this.vendorCode,
                 downloaded_date: dateString,
                 downloaded_time: timeString,
-                template_name: 'FPD_Discount_Menu'
-                email:
+                template_name: 'FPD_Discount_Menu',
+                email: this.email
             });
 
             let config = {
