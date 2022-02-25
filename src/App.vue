@@ -332,7 +332,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["setIsLogin","setVendorCode","setTryAccess"]),
+    ...mapActions(["setIsLogin","setVendorCode","setTryAccess","setEmail"]),
     lowerCase() {
         this.vendorCode = this.vendorCode.toLowerCase();
     },
@@ -428,6 +428,7 @@ export default {
           this.login_dialog = false
           this.setIsLogin(true)
           this.setVendorCode(this.vendorCode)
+          this.setEmail(this.email)
         } else {
           this.snackbarColor = "#DC3A45"
           if (loginResult.message === 'NO_EMAIL_OR_OTP') {

@@ -96,7 +96,7 @@ export default {
         });
     },  
     computed: {
-        ...mapState(["vendorCode"]),
+        ...mapState(["vendorCode", "email"]),
         fontSize() {
             const name = this.$vuetify.breakpoint.name;
             if (name === 'xs') {
@@ -188,6 +188,7 @@ export default {
                 downloaded_date: dateString,
                 downloaded_time: timeString,
                 template_name: 'FPD_Discount_Menu'
+                email:
             });
 
             let config = {

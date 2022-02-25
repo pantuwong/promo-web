@@ -8,6 +8,7 @@ export default new Vuex.Store({
     isLogin: false,
     selectedTemplate: null,
     vendorCode: null,
+    email: null,
     tryAccess: false,
   },
   mutations: {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     setTryAccess(state, tryAccess) {
       state.tryAccess = tryAccess;
+    },
+    setEmail(state, email) {
+      state.email = email;
     }
   },
   actions: {
@@ -36,6 +40,9 @@ export default new Vuex.Store({
     },
     setTryAccess(context, tryAccess) {
       context.commit('setTryAccess', tryAccess)
+    },
+    setEmail(context, email) {
+      context.commit('setEmail', email)
     }
   },
   modules: {
