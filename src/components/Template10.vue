@@ -80,7 +80,7 @@ export default {
         if (this.vendorCode === undefined) {
             url = 'https://www.foodpanda.co.th/';
         } else {
-            url = `https://www.foodpanda.co.th/restaurant/${this.vendorCode}`
+            url = `foodpanda://?c=th&s=s&vc=${this.vendorCode}`
         }
 
         qr.toDataURL(url, (err, src) => {
